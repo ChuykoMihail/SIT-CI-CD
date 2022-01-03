@@ -49,7 +49,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        passphrase: ${{ secrets.PASSPHRASE }}
         
         script: |
           cd ${{ secrets.PROJECT_DIR_DEV }}
@@ -62,12 +61,11 @@ jobs:
     environment: prod
     steps:
     - name: deploy prod
-      uses: appleboy/ssh-action@v0.1.4
+      uses: appleboy/ssh-action@v0.1.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        passphrase: ${{ secrets.PASSPHRASE }}
         
         script: |
           cd ${{ secrets.PROJECT_DIR_PROD }}
