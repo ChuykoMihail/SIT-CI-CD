@@ -62,7 +62,7 @@ jobs:
     environment: prod
     steps:
     - name: deploy prod
-      uses: appleboy/ssh-action@v0.1.3
+      uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
