@@ -37,3 +37,39 @@ jobs:
       #выполняем тестирование
       - name: Unit testing
         run: php ./vendor/bin/phpunit tests/testSimple
+        
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    environment: staging
+    steps:
+    - name: deploy staging
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PASSWORD }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        
+        script: |
+          cd ${{ secrets.PROJECT_DIR_DEV }}
+          cd scripts
+          ./build.sh
+          
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    environment: prod
+    steps:
+    - name: deploy prod
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PASSWORD }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        
+        script: |
+          cd ${{ secrets.PROJECT_DIR_PROD }}
+          cd scripts
+          ./build.sh
