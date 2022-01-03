@@ -49,6 +49,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         
         script: |
           cd ${{ secrets.PROJECT_DIR_DEV }}
@@ -66,6 +67,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         
         script: |
           cd ${{ secrets.PROJECT_DIR_PROD }}
